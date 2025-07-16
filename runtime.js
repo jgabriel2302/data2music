@@ -95,7 +95,11 @@
       const values = _data.map(row => parseFloat(row[yCol])).filter(v => !isNaN(v));
       const labels = _data.map(row => row[xCol]).slice(0, values.length);
 
-      const noteScale = ["C4","D4","E4","F4","G4","A4","B4","C5","D5","E5","F5","G5","A5","B5"];
+      // Escala Maior em C
+      // const noteScale = ["C3","D3","E3","F3","G3","A3","B3","C4","D4","E4","F4","G4","A4","B4","C5","D5","E5","F5","G5","A5","B5"];
+      // Escala  blues maior em C
+      const noteScale = ["C3","D3","Eb3","E3","G3","A3","C4","D4","Eb4","E4","G4","A4","C5","D5","Eb5","E5","G5","A5"];
+      
       const notes = mapToNotes(values, noteScale);
 
       const ctx = document.getElementById('dataChart').getContext('2d');
@@ -155,6 +159,8 @@
         const time = 0.2 * i * 1000;
         const timeoutId = setTimeout(() => {
           if (!isPlaying) return;
+          if(document.querySelector(`.active[note]`)) document.querySelector(`.active[note]`).classList.remove('active');
+          document.querySelector(`[note="${note}"]`).classList.add('active');
           noteDisplay.innerHTML = `<span class="pill">${xCol}: ${labels[i]}</span> → <span class="pill">${yCol}: ${values[i]} | ${note}</span>`;
           synth.triggerAttackRelease(note, "4n");
         }, time);
