@@ -121,14 +121,33 @@
 
       await Tone.start();
 
-      synth = new Tone.PolySynth(Tone.Synth, {
-        envelope: {
-          attack: 0.1,
-          decay: 0.2,
-          sustain: 0.3,
-          release: 0.8
-        }
-      }).toDestination();
+    //   synth = new Tone.PolySynth(Tone.Synth, {
+    //     envelope: {
+    //       attack: 0.1,
+    //       decay: 0.2,
+    //       sustain: 0.3,
+    //       release: 0.8
+    //     }
+    //   }).toDestination();
+
+      synth = new Tone.Sampler({
+            // envelope: {
+            //     attack: 0.1,
+            //     decay: 0.2,
+            //     sustain: 0.3,
+            //     release: 0.8
+            // },
+            urls: {
+                C4: "C4.mp3",
+                "D#4": "Ds4.mp3",
+                "F#4": "Fs4.mp3",
+                A4: "A4.mp3",
+            },
+            release: 1,
+            baseUrl: "https://tonejs.github.io/audio/salamander/",
+        }).toDestination();
+
+       await Tone.loaded(); 
 
       isPlaying = true;
       for (let i = 0; i < notes.length; i++) {
