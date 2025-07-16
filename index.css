@@ -49,10 +49,6 @@ section {
     flex-wrap: wrap;
 }
 
-section > * {
-    margin: 0.5em;
-}
-
 .input {
     display: inline-flex;
     align-items: center;
@@ -66,6 +62,7 @@ section > * {
     box-sizing: content-box;
     border: 1px solid;
     margin: auto 5px;
+    max-width: calc(100% - 2.8em);
 }
 
 .input span {
@@ -92,16 +89,22 @@ section > * {
     border: none;
     outline: none;
     min-width: 30px;
+    max-width: calc(100% - 2.8em);
     height: 30px;
     box-sizing: content-box;
     margin: 0 0.1em;
     cursor: pointer;
     border: 1px solid;
+    flex-wrap: wrap;
     & > img:first-child {
         margin-right: 5px;
     }
     & > img:last-child {
         margin-left: 5px;
+    }
+    & span {
+        white-space: break-spaces;
+        max-width: 200px;
     }
 }
 
@@ -138,6 +141,8 @@ section > * {
 
 .row {
     display: flex;
+    flex-wrap: wrap;
+    max-width: calc(100vw - 2.8em);
 }
 
 .pill {
@@ -161,6 +166,8 @@ section > * {
 }
 
 canvas {
+    margin: 0.5em 0;
     border-radius: 5px;
     background-color: white;
+    max-width: calc(100vw - 2.8em);
 }
